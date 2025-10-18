@@ -22,10 +22,17 @@
     <h1 data-i18n="callTitle">Assistance en direct</h1>
     <div class="video-wrap">
       <video id="local" class="video" autoplay playsinline></video>
-      <div class="toolbar" style="display:flex;justify-content:center;align-items:center;gap:12px;background:#f9f9f9;border-radius:12px;padding:8px 16px;box-shadow:0 2px 5px rgba(0,0,0,0.1);max-width:400px;margin:0 auto 10px;">
-  <div style="text-align:center;">
-    <div data-i18n="timer" style="font-weight:600;">Durée :</div>
-    <div id="time">00:00</div>
+      <div class="toolbar" style="display:flex;justify-content:center;align-items:center;gap:8px;font-size:15px;">
+  <div>
+    <b data-i18n="timer">Durée :</b> <span id="time">00:00</span>
+  </div>
+  <div>
+    <b data-i18n="price">Total :</b> <span id="price" style="color:#00994d;font-weight:700;">CHF 0.00</span>
+  </div>
+  <div>
+    💰 <span data-i18n="tarifText">25 CHF à la réponse + 2.50 CHF/min, facturation à la seconde</span>
+  </div>
+</div>
   </div>
   <div style="text-align:center;">
     <div data-i18n="price" style="font-weight:600;">Total :</div>
