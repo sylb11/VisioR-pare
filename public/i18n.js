@@ -1,9 +1,32 @@
 
 const MESSAGES = {
-  fr:{brand:'VisioRépare',slogan:'Tes mains, nos yeux techniques.',heroTitle:'Répare en visio avec un technicien expert',heroText:'99 % des pannes non graves se résolvent en direct. 25 CHF à la réponse + 2.50 CHF/min.',start:'Commencer maintenant',pricing:'Tarifs',how:'Comment ça marche',step1:'Décris le problème et lance la visio',step2:'Ton téléphone devient les yeux du technicien',step3:'Tes mains suivent ses instructions — tu répares',gotoCall:'Démarrer la visio',formTitle:'Demande de visio',name:'Nom et prénom',email:'E-mail',phone:'Téléphone',issue:'Type de problème',desc:'Description (optionnel)',photos:'Photos (optionnel)',consent:'J’accepte 25 CHF à la réponse + 2.50 CHF/min.',begin:'Lancer l’appel vidéo',callTitle:'Assistance en direct',timer:'Durée',price:'Total',end:'Terminer la visio',est:'Estimation en direct',minutesAbbrev:'min',signin:'Connexion',login:'Espace technicien',email_ph:'expert@visiorepare.ch',pass_ph:'mot de passe',home:'Accueil'},
-  it:{brand:'VisioRépare',slogan:'Le tue mani, i nostri occhi tecnici.',heroTitle:'Ripara in video con un tecnico esperto',heroText:'Il 99% dei guasti non gravi si risolve in diretta. 25 CHF alla risposta + 2.50 CHF/min.',start:'Inizia ora',pricing:'Tariffe',how:'Come funziona',step1:'Descrivi il problema e avvia la videochiamata',step2:'Il tuo telefono diventa gli occhi del tecnico',step3:'Le tue mani seguono le sue istruzioni — ripari tu',gotoCall:'Avvia videochiamata',formTitle:'Richiesta video',name:'Nome e cognome',email:'E-mail',phone:'Telefono',issue:'Tipo di problema',desc:'Descrizione (opzionale)',photos:'Foto (opzionale)',consent:'Accetto 25 CHF alla risposta + 2.50 CHF/minuto.',begin:'Avvia la chiamata',callTitle:'Assistenza in diretta',timer:'Durata',price:'Totale',end:'Termina chiamata',est:'Stima in tempo reale',minutesAbbrev:'min',signin:'Accedi',login:'Area tecnico',email_ph:'expert@visiorepare.ch',pass_ph:'password',home:'Home'},
-  de:{brand:'VisioRépare',slogan:'Deine Hände, unsere technischen Augen.',heroTitle:'Reparieren per Video mit einem Experten',heroText:'99 % der kleinen Störungen werden live gelöst. 25 CHF bei Annahme + 2.50 CHF/Min.',start:'Jetzt starten',pricing:'Preise',how:'So funktioniert’s',step1:'Problem beschreiben und Video starten',step2:'Dein Handy wird zu den Augen des Technikers',step3:'Deine Hände folgen seinen Anweisungen — du reparierst',gotoCall:'Video starten',formTitle:'Videoanfrage',name:'Name und Vorname',email:'E‑Mail',phone:'Telefon',issue:'Problemtyp',desc:'Beschreibung (optional)',photos:'Fotos (optional)',consent:'Ich akzeptiere 25 CHF bei Annahme + 2.50 CHF/Min.',begin:'Videoanruf starten',callTitle:'Live‑Unterstützung',timer:'Dauer',price:'Gesamt',end:'Video beenden',est:'Live‑Schätzung',minutesAbbrev:'Min',signin:'Anmelden',login:'Technikerbereich',email_ph:'expert@visiorepare.ch',pass_ph:'Passwort',home:'Startseite'}
+  fr: {
+    // ...altro...
+    how: "Comment ça marche",
+    step1: "Décris ton problème et lance la visioconférence",
+    step2: "Avant l’appel, prépare les outils : tournevis avec embouts, pince multiprise, clé à molette, Téflon ou filasse avec pâte",
+    step3: "Ton téléphone devient les yeux du technicien",
+    step4: "Tes mains suivent ses instructions — tu répares, guidé étape par étape",
+    // ...altro...
+  },
+  it: {
+    // ...altro...
+    how: "Come funziona",
+    step1: "Descrivi il problema e avvia la videochiamata",
+    step2: "Prima della chiamata, prepara gli attrezzi: cacciavite con inserti, chiave multipresa, chiave a rullino, Téflon o filassa con grasso per filassa",
+    step3: "Il tuo telefono diventa gli occhi del tecnico",
+    step4: "Le tue mani seguono le sue istruzioni — ripari tu, passo dopo passo",
+    // ...altro...
+  },
+  de: {
+    // ...altro...
+    how: "So funktioniert’s",
+    step1: "Beschreibe das Problem und starte den Videoanruf",
+    step2: "Vor dem Anruf Werkzeuge bereitlegen: Schraubendreher mit Einsätzen, Wasserpumpenzange, verstellbarer Schraubenschlüssel, Teflonband oder Hanf mit Paste",
+    step3: "Dein Smartphone wird zu den Augen des Technikers",
+    step4: "Deine Hände folgen seinen Anweisungen — du reparierst Schritt für Schritt",
+    // ...altro...
+  }
 };
-let LANG = localStorage.getItem('lang') || 'fr';
 function setLang(l){ LANG = l; localStorage.setItem('lang', l); for(const el of document.querySelectorAll('[data-i18n]')){ const k=el.getAttribute('data-i18n'); el.textContent = (MESSAGES[LANG][k]||k);} for(const el of document.querySelectorAll('[data-ph]')){ const k=el.getAttribute('data-ph'); el.placeholder=(MESSAGES[LANG][k]||''); } }
 window.addEventListener('DOMContentLoaded',()=>setLang(LANG));
