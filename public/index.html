@@ -1,2 +1,76 @@
-<!doctype html><html><head><meta charset=utf-8><title>VisioRépare Pro Demo</title></head>
-<body><h1>VisioRépare Pro Demo (FR/IT/DE)</h1><p>Backend Express + Frontend PWA</p></body></html>
+
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+<title>VisioRépare – Tes mains, nos yeux techniques.</title></head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="brand">
+      <a href="language.html"><img src="logo.svg" class="logo" alt="logo"></a>
+      <div class="appname" data-i18n="brand">VisioRépare</div>
+      <span class="badge">www.visiorepare.ch</span>
+    </div>
+    <div class="lang">
+      <button onclick="setLang('fr')">FR</button>
+      <button onclick="setLang('it')">IT</button>
+      <button onclick="setLang('de')">DE</button>
+    </div>
+  </header>
+
+  <section class="card">
+    <div class="grid">
+      <div>
+        <h1 data-i18n="heroTitle">Répare en visio avec un technicien expert</h1>
+        <p class="muted" data-i18n="heroText">99 % des pannes non graves se résolvent en direct. 25 CHF à la réponse + 2.50 CHF/min.</p>
+        <div class="cta">
+          <a href="request.html"><button class="primary" data-i18n="start">Commencer maintenant</button></a>
+          <a href="#how"><button class="secondary" data-i18n="how">Comment ça marche</button></a>
+        </div>
+        <hr>
+        <div class="list">
+          <div>✅ 48 % des Suisses aiment réparer eux-mêmes — VisioRépare amplifie cette autonomie.</div>
+          <div>✅ Paiement simple: 25 CHF + 2.50 CHF/min, facturation à la seconde.</div>
+          <div>✅ Conseils de sécurité et dossier visio enregistrés.</div>
+        </div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="pricing">Tarifs</h2>
+        <div class="statline">
+          <div class="kpi">25 CHF</div><div class="kpi">+ 2.50 CHF/min</div><div class="kpi">Pro‑rata seconde</div>
+        </div>
+        <p class="notice">La plupart des pannes simples se résolvent en &lt; 15 min.</p>
+        <div class="login">
+          <input class="input" id="email" data-ph="email_ph" placeholder="expert@visiorepare.ch">
+          <input class="input" id="pass" data-ph="pass_ph" type="password" placeholder="mot de passe">
+          <button class="secondary" id="signin" data-i18n="signin">Connexion</button>
+        </div>
+        <small id="loginMsg" class="muted"></small>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="card" style="margin-top:20px">
+    <h2 data-i18n="how">Comment ça marche</h2>
+    <ol class="list">
+      <li data-i18n="step1">Décris le problème et lance la visio</li>
+      <li data-i18n="step2">Ton téléphone devient les yeux du technicien</li>
+      <li data-i18n="step3">Tes mains suivent ses instructions — tu répares</li>
+    </ol>
+    <a href="request.html"><button class="primary" data-i18n="gotoCall">Démarrer la visio</button></a>
+  </section>
+
+  <footer class="footer">© 2025 VisioRépare – Service de dépannage en visio (Suisse)</footer>
+</div>
+<script src="i18n.js"></script>
+<script>
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
+document.getElementById('signin').onclick = async ()=>{
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('pass').value;
+  const res = await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+  const js = await res.json();
+  document.getElementById('loginMsg').textContent = js.ok ? 'Login OK — token: '+js.token : (js.error||'Erreur');
+};
+</script>
+</body></html>

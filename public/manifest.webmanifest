@@ -1,1 +1,9 @@
-{"name": "VisioR\u00e9pare", "short_name": "VisioR\u00e9pare", "start_url": "/", "display": "standalone"}
+{
+  "name": "VisioRépare Suisse",
+  "short_name": "VisioRépare",
+  "start_url": "/language.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a3d62",
+  "icons": []
+}

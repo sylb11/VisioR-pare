@@ -1,0 +1,55 @@
+
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css"><title>VisioRépare – Appel</title></head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="brand"><a href="language.html"><img src="logo.svg" class="logo" alt="logo"></a><div class="appname">VisioRépare</div><span class="badge">25 CHF + 2.50 CHF/min</span></div>
+  </header>
+
+  <section class="card">
+    <h1 data-i18n="callTitle">Assistance en direct</h1>
+    <div class="video-wrap">
+      <video id="local" class="video" autoplay playsinline></video>
+      <div class="toolbar">
+        <div class="statline">
+          <div class="kpi"><b data-i18n="timer">Durée</b> : <span id="time">00:00</span></div>
+          <div class="kpi"><b data-i18n="price">Total</b> : <span class="price" id="price">CHF 0.00</span></div>
+        </div>
+        <div class="cta">
+          <button class="secondary" id="mute">Mute</button>
+          <button class="secondary" id="pause">Pause Cam</button>
+          <button class="primary" id="end" data-i18n="end">Terminer la visio</button>
+        </div>
+      </div>
+      <div class="notice">Démo: capture ta caméra locale (aucun appel réel). Facturation simulée à la seconde.</div>
+      <div class="cta"><button class="secondary" id="charge">Simuler paiement</button></div>
+      <small id="receipt" class="muted"></small>
+    </div>
+  </section>
+
+  <footer class="footer">© 2025 VisioRépare – Service de dépannage en visio (Suisse)</footer>
+</div>
+<script>
+const FEE_OPEN = 25.0, FEE_PER_MIN = 2.5;
+let stream, seconds=0, running=false, tickInt;
+async function start(){
+  try{ stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true}); local.srcObject = stream; startBilling(); }
+  catch(e){ alert('Autorise la caméra et le micro.'); console.error(e); }
+}
+function startBilling(){ running=true; seconds=0; updateUI(); tickInt=setInterval(()=>{ if(running){ seconds++; updateUI(); } },1000); }
+function updateUI(){
+  const m = String(Math.floor(seconds/60)).padStart(2,'0'), s = String(seconds%60).toString().padStart(2,'0'); time.textContent = m+':'+s;
+  const price = FEE_OPEN + (FEE_PER_MIN/60.0)*seconds; priceEl.textContent = 'CHF ' + price.toFixed(2);
+}
+mute.onclick=()=>{ const t=stream?.getAudioTracks?.()[0]; if(!t)return; t.enabled=!t.enabled; mute.textContent=t.enabled?'Mute':'Unmute'; }
+pause.onclick=()=>{ const t=stream?.getVideoTracks?.()[0]; if(!t)return; t.enabled=!t.enabled; pause.textContent=t.enabled?'Pause Cam':'Resume Cam'; }
+end.onclick=()=>{ running=false; clearInterval(tickInt); stream?.getTracks?.().forEach(t=>t.stop()); alert('Session: '+priceEl.textContent); location.href='index.html'; }
+charge.onclick=async()=>{
+  const res = await fetch('/api/charge',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({seconds})});
+  const js = await res.json(); receipt.textContent = js.ok ? ('Reçu '+js.receipt+' — '+js.amount+' '+js.currency) : 'Erreur paiement';
+}
+start();
+</script>
+</body></html>

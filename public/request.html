@@ -1,0 +1,55 @@
+
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css"><title>VisioRépare – Demande</title></head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="brand">
+      <a href="language.html"><img src="logo.svg" class="logo" alt="logo"></a>
+      <div class="appname" data-i18n="brand">VisioRépare</div>
+      <span class="badge">www.visiorepare.ch</span>
+    </div>
+    <div class="lang"><button onclick="setLang('fr')">FR</button><button onclick="setLang('it')">IT</button><button onclick="setLang('de')">DE</button></div>
+  </header>
+
+  <section class="card">
+    <h1 data-i18n="formTitle">Demande de visio</h1>
+    <div class="grid">
+      <div>
+        <label data-i18n="name">Nom et prénom</label><input class="input" id="name">
+        <label data-i18n="email">E-mail</label><input class="input" id="email" type="email">
+        <label data-i18n="phone">Téléphone</label><input class="input" id="phone">
+        <label data-i18n="issue">Type de problème</label>
+        <select class="input" id="issue">
+          <option>Fuite d’eau</option><option>Pression chaudière</option><option>Évacuation / WC bouché</option><option>Radiateur / chauffage</option><option>Autre</option>
+        </select>
+        <label data-i18n="desc">Description (optionnel)</label><textarea class="input" id="desc" rows="4"></textarea>
+        <label data-i18n="photos">Photos (optionnel)</label><input class="input" id="photos" type="file" accept="image/*" multiple>
+        <div style="margin-top:10px"><input type="checkbox" id="consent"> <label for="consent" style="display:inline" data-i18n="consent">J’accepte 25 CHF à la réponse + 2.50 CHF/min.</label></div>
+        <div class="cta"><button class="primary" id="go" data-i18n="begin">Lancer l’appel vidéo</button><a href="index.html"><button class="secondary" data-i18n="home">Accueil</button></a></div>
+        <small class="muted" data-i18n="est">Estimation en direct</small>
+      </div>
+      <div class="card">
+        <h2>Résumé</h2><div id="summary" class="list"></div>
+        <div class="notice">Démo: aucune donnée n’est envoyée. Paiement à venir.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">© 2025 VisioRépare – Service de dépannage en visio (Suisse)</footer>
+</div>
+<script src="i18n.js"></script>
+<script>
+function updateSummary(){
+  const s = document.getElementById('summary'); s.innerHTML='';
+  const data = { Nom: name.value, Email: email.value, Téléphone: phone.value, Problème: issue.value, Description: desc.value };
+  for(const [k,v] of Object.entries(data)){ const div=document.createElement('div'); div.textContent = k + ': ' + (v||'—'); s.appendChild(div); }
+}
+['name','email','phone','issue','desc'].forEach(id=>document.getElementById(id).addEventListener('input',updateSummary)); updateSummary();
+document.getElementById('go').addEventListener('click',()=>{
+  if(!document.getElementById('consent').checked){ alert('Veuillez accepter le tarif.'); return; }
+  location.href = 'visio.html';
+});
+</script>
+</body></html>
