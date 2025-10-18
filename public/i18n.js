@@ -9,6 +9,8 @@ toolsList: "Tournevis avec embouts • Pince multiprise • Clé à molette • 
     step2: "Avant l’appel, prépare les outils : tournevis avec embouts, pince multiprise, clé à molette, Téflon ou filasse avec pâte",
     step3: "Ton téléphone devient les yeux du technicien",
     step4: "Tes mains suivent ses instructions — tu répares, guidé étape par étape",
+    tarifTitle: "💰 Tarifs :",
+tarifText: "25 CHF à la réponse + 2.50 CHF/min, facturation à la seconde.",
     // ...altro...
   },
   it: {
@@ -20,6 +22,8 @@ toolsList: "Cacciavite con inserti • Chiave multipresa • Chiave a rullino �
     step2: "Prima della chiamata, prepara gli attrezzi: cacciavite con vari inserti, chiave papagallo, chiave a rullino, Téflon o canapa con grasso per canapa",
     step3: "Il tuo telefono diventa gli occhi del tecnico",
     step4: "Le tue mani seguono le sue istruzioni — ripari tu, passo dopo passo",
+    tarifTitle: "💰 Tariffe :",
+tarifText: "25 CHF alla risposta + 2.50 CHF/min, fatturazione al secondo.",
     // ...altro...
   },
   de: {
@@ -31,6 +35,8 @@ toolsList: "Schraubendreher mit Einsätzen • Wasserpumpenzange • Verstellbar
     step2: "Vor dem Anruf Werkzeuge bereitlegen: Schraubendreher mit Einsätzen, Wasserpumpenzange, verstellbarer Schraubenschlüssel, Teflonband oder Hanf mit Paste",
     step3: "Dein Smartphone wird zu den Augen des Technikers",
     step4: "Deine Hände folgen seinen Anweisungen — du reparierst Schritt für Schritt",
+    tarifTitle: "💰 Preise :",
+tarifText: "25 CHF beim Anrufstart + 2.50 CHF/Min, sekundengenaue Abrechnung.",
     // ...altro...
   }
 };
